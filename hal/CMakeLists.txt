@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.22)
+
+set(MODULE_NAME ${PROJECT_NAME}_K1921VG015_HAL)
+
+add_library(${MODULE_NAME}_INTERFACE INTERFACE)
+
+add_subdirectory(core)
+
+target_link_libraries(
+    ${MODULE_NAME}_INTERFACE 
+    INTERFACE
+    ${MODULE_NAME}_CORE
+)
