@@ -79,6 +79,10 @@
 #define PLF_SAVE_RESTORE_REGS331_SUB 0
 #endif // PLF_SAVE_RESTORE_REGS331_SUB
 
+#ifndef PLF_BLD_ID_ADDR
+#define PLF_BLD_ID_ADDR 0
+#endif
+
 // trap causes
 // interrupts
 #define TRAP_CAUSE_INTERRUPT_FLAG (1UL << (__riscv_xlen - 1))
@@ -276,7 +280,7 @@ static inline void flush_tlb(void)
 
 static inline uint32_t __attribute__((const)) get_build_id(void)
 {
-#if PLF_BLD_ID_ADDR
+#if PLF_BLD_ID_ADDR > 0 
     return *(volatile uint32_t*)PLF_BLD_ID_ADDR;
 #else
     return 0;
