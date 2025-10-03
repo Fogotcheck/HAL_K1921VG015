@@ -26,14 +26,24 @@ bool Hal_rcu::init(void)
     return true;
 }
 
-void Hal_rcu::initMSP(void)
+bool Hal_rcu::initMSP(Hal_gpio &gpio)
 {
-    inst->CGCFGAHB_bit.GPIOCEN      = 1;
-    inst->RSTDISAHB_bit.GPIOCEN     = 1;
-
-    /** @todo change after GPIO*/
-    GPIOC->ALTFUNCNUM_bit.PIN7      = 3;
-    GPIOC->ALTFUNCSET_bit.PIN7      = 1;
+    auto pPort = gpio.getPort();
+    if (pPort==GPIOA) {
+        inst->CGCFGAHB_bit. GPIOAEN     = 1;
+        inst->RSTDISAHB_bit.GPIOAEN     = 1;
+    } else
+    if (pPort==GPIOB) {
+        inst->CGCFGAHB_bit. GPIOBEN     = 1;
+        inst->RSTDISAHB_bit.GPIOBEN     = 1;
+    } else
+    if (pPort==GPIOC) {
+        inst->CGCFGAHB_bit.GPIOCEN      = 1;
+        inst->RSTDISAHB_bit.GPIOCEN     = 1;
+    }else
+        return false;
+    
+    return true;
 }
 
 bool Hal_rcu::setTypeSysClk(RCU_SYSCLKCFG_SRC_Enum type)

@@ -2,6 +2,7 @@
 #define __hal_rcu_h__
 
 #include "hal_rcu_def.h"
+#include "hal_gpio.h"
 
 class Hal_rcu
 {
@@ -26,8 +27,8 @@ private:
 public:
     bool init           (void);
     void update         (void);
-    void initMSP        (void);
     bool selectPllOut   (void);
+    bool initMSP        (Hal_gpio       &gpio           );
     bool selectHSE      (uint32_t       newValHSEClk    );
     
     bool setTypeSysClk  (RCU_SYSCLKCFG_SRC_Enum type    );
