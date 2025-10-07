@@ -20,5 +20,6 @@ target_link_libraries(
     ${MODULE_NAME}_GPIO
     ${MODULE_NAME}_GPIO_INTERFACE
     ${MODULE_NAME}_CORE
+    ${MODULE_NAME}_PERIPH_BASE_INTERFACE
 )
 
