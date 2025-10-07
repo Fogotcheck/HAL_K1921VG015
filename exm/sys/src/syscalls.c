@@ -16,6 +16,8 @@ static inline uint32_t pseudo_random();
 char *__env[1] = { 0 };
 char **environ = __env;
 
+void* __dso_handle = NULL;
+
 static uint32_t seed = 0x12345678; // Начальное значение
 
 
